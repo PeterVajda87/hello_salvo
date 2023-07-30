@@ -1,4 +1,5 @@
 use salvo::conn::rustls::{Keycert, RustlsConfig};
+use salvo::http::StatusCode;
 use salvo::prelude::*;
 
 #[handler]
@@ -9,6 +10,11 @@ async fn greet(req: &mut Request) -> String {
         .cloned()
         .unwrap_or("World".to_string());
     format!("Hello, {}!", &name)
+}
+
+#[handler]
+async fn health_check() -> StatusCode {
+    StatusCode::OK
 }
 
 #[tokio::main]

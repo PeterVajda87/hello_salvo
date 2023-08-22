@@ -17,8 +17,8 @@ async fn health_check() -> StatusCode {
     StatusCode::OK
 }
 
-#[tokio::main]
-async fn main() {
+// #[tokio::main]
+fn main() {
     tracing_subscriber::fmt().init();
     let cert = include_bytes!("/etc/letsencrypt/live/showdown.monster/cert.pem").to_vec();
     let key = include_bytes!("/etc/letsencrypt/live/showdown.monster/privkey.pem").to_vec();
@@ -32,5 +32,5 @@ async fn main() {
         .bind()
         .await;
 
-    Server::new(acceptor).serve(router).await;
+    // Server::new(acceptor).serve(router).await;
 }
